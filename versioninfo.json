@@ -1,0 +1,22 @@
+{
+	"StringFileInfo": {
+		"OriginalFilename": "use-go-msi.exe",
+		"FileDescription": "Use go-msi",
+		"CompanyName": "example.com",
+		"LegalCopyright": "example.com",
+		"ProductName": "Use go-msi",
+		"Comments": "see https://github.com/rgl/use-go-msi"
+	},
+	"FixedFileInfo": {
+		"FileFlagsMask": "3f",
+		"FileFlags": "00",
+		"FileOS": "040004",
+		"FileType": "01"
+	},
+	"VarFileInfo": {
+		"Translation": {
+			"LangID": "0409",
+			"CharsetID": "04b0"
+		}
+	}
+}
