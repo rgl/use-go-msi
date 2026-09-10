@@ -15,6 +15,14 @@ import (
 const IDI_APPLICATION = 32512 // application icon index.
 
 func main() {
+	if len(os.Args) > 1 && os.Args[1] == "build-msi" {
+		err := buildMSI("use-go-msi-unsigned.msi")
+		if err != nil {
+			panic(err)
+		}
+		return
+	}
+
 	runtime.LockOSThread()
 
 	info, ok := debug.ReadBuildInfo()

@@ -1,2 +1,4 @@
 *.syso
 *.exe
+*.msi
+*.log
