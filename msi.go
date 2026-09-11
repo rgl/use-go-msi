@@ -7,14 +7,17 @@ import (
 	"go.digitalxero.dev/go-msi"
 )
 
-func buildMSI(destinationPath string) error {
+func buildMSI(destinationPath string, sign bool) error {
 	f, err := os.Create(destinationPath)
 	if err != nil {
 		return err
 	}
 	defer f.Close()
 
-	title := "Use go-msi Unsigned"
+	title := "Use go-msi"
+	if !sign {
+		title += " Unsigned"
+	}
 
 	builder := msi.NewPackage().
 		WithAllUsers(true).
@@ -51,6 +54,17 @@ func buildMSI(destinationPath string) error {
 		InDirectory("ProgramMenuFolder").
 		Description(fmt.Sprintf("Launch %s", title)).
 		Icon("app", 0)
+
+	if sign {
+		signer, err := msi.NewSigner().
+			WithPFX("example-code-signing.p12", "").
+			Build()
+		if err != nil {
+			return err
+		}
+		builder = builder.
+			WithSigner(signer)
+	}
 
 	pkg, err := builder.Build()
 	if err != nil {

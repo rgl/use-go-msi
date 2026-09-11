@@ -16,7 +16,11 @@ const IDI_APPLICATION = 32512 // application icon index.
 
 func main() {
 	if len(os.Args) > 1 && os.Args[1] == "build-msi" {
-		err := buildMSI("use-go-msi-unsigned.msi")
+		err := buildMSI("use-go-msi-unsigned.msi", false)
+		if err != nil {
+			panic(err)
+		}
+		err = buildMSI("use-go-msi.msi", true)
 		if err != nil {
 			panic(err)
 		}
